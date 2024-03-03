@@ -1,4 +1,5 @@
 require 'uri'
+require 'cgi'
 require 'nokogiri'
 require File.expand_path('error', __dir__)
 
@@ -19,7 +20,6 @@ module WeConnect
     		@type = "Id";
     		@country = "DE";
     		@xrequest = "com.volkswagen.weconnect";
-    #    @xrequest = "de.volkswagen.carnet.eu.eremote"
     		@xclientId = "";
         @client_id = "a24fba63-34b3-4d43-b181-942111e6bda8@apps_vw-dilab_com";
 
@@ -45,11 +45,11 @@ module WeConnect
         page = email_page_step(form)
         idk = IDKParser.new(page.body)
         page = password_page_step(idk)
-        if page['location'][@car_info.redirect]
-          puts "**** LOGGED IN!!"
-        else
-          raise IncompatibleAPIError.new( "#{@car_info.redirect} redirect not found" )
-        end
+
+        raise IncompatibleAPIError.new( "#{@car_info.redirect} redirect not found" )
+      rescue RedirectAuthenticated => authenticated
+        # weconnect://authenticatied#... extpected
+        tokens = CGI.parse(URI.parse(authenticated.redirect).fragment)
       end
     private
       def login_page_step
@@ -57,25 +57,7 @@ module WeConnect
           nonce: nonce(),
           redirect_uri: @car_info.redirect
         }
-        r = @connection.get('https://emea.bff.cariad.digital/user-login/v1/authorize',params,true) do |request|
-  #        request.headers['user-agent'] = 'WeConnect/3 CFNetwork/1331.0.7 Darwin/21.4.0'
-  #        request.headers['weconnect-trace-id'] = trace_id
-        end
-=begin
-        if r.status == 303
-          @login_url = url = r['location']
-          loop do
-            r = @connection.get(url, {}, true) do |request|
-        #      request.headers['user-agent']= 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.185 Mobile Safari/537.36'
-              request.headers['x-requested-with'] = @car_info.xrequest
-            end
-            break unless r.status >=300 && r.status < 400
-            url = r['location']
-          end
-        else
-          raise IncompatibleAPIError.new( "redirect expected" )
-        end
-=end
+        r = @connection.get('https://emea.bff.cariad.digital/user-login/v1/authorize',params,true)
         @login_url = r.env.url
         r
       end

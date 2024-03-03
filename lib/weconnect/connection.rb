@@ -1,12 +1,13 @@
 require 'faraday'
 require 'faraday/follow_redirects'
 require 'faraday-cookie_jar'
+require File.expand_path('error', __dir__)
 
 module WeConnect
-  class RedirectAuthenticated
-    attr_reader :state
-    def initialize(state)
-      @state = state
+  class RedirectAuthenticated < WeConnectError
+    attr_reader :redirect
+    def initialize(location)
+      @redirect = location
     end
   end
   # Create connection including authorization parameters with default Accept format and User-Agent
@@ -18,10 +19,11 @@ module WeConnect
     private
     class WeConnectMiddleware < Faraday::Middleware
       def call(env)
-        puts "+#{env.url} (#{env.url.scheme}) #{env.url.fragment}"
-        puts "++++++++ Middleware.FOUNDIT"+env.url if env.url.scheme['weconnect']
-
         response = @app.call(env)
+        if location = response['location']
+          raise RedirectAuthenticated.new(location) if location['weconnect:']
+        end
+        response
       end
     end
     def connection
@@ -30,8 +32,6 @@ module WeConnect
       options = setup_options
       @connection ||= Faraday::Connection.new(options) do |connection|
         connection.use Faraday::FollowRedirects::Middleware, { limit: 10, callback: proc do |old_env, new_env|
-puts "redirect #{new_env.url}"
-          raise RedirectAuthenticated(new_env.url) if new_env.url.scheme['weconnect']
         end
         }
         connection.use WeConnectMiddleware
