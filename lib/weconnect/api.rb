@@ -1,4 +1,5 @@
 require "wrapi"
+require File.expand_path('connection', __dir__)
 require File.expand_path('request', __dir__)
 require File.expand_path('authorization', __dir__)
 
@@ -26,6 +27,7 @@ module WeConnect
     end
 
     include WrAPI::Connection
+    include WeConnect::Connection
     include WrAPI::Request
     include WrAPI::Authentication
     include Authentication
