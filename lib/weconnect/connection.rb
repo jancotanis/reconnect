@@ -18,14 +18,10 @@ module WeConnect
     private
     class WeConnectMiddleware < Faraday::Middleware
       def call(env)
-        puts "+#{env.url}"
-        puts "++++++++ Middleware.FOUNDIT"+env.url if env.url.scheme['weconnect:']
+        puts "+#{env.url} (#{env.url.scheme}) #{env.url.fragment}"
+        puts "++++++++ Middleware.FOUNDIT"+env.url if env.url.scheme['weconnect']
 
         response = @app.call(env)
-#      rescue Faraday::ConnectionFailed => e
-
-#        puts "++++++++ Middleware.recue"+e.response
-#        puts "++++++++ Middleware.recue"+e.inspect
       end
     end
     def connection
@@ -33,7 +29,11 @@ module WeConnect
 
       options = setup_options
       @connection ||= Faraday::Connection.new(options) do |connection|
-        connection.use Faraday::FollowRedirects::Middleware, limit: 10
+        connection.use Faraday::FollowRedirects::Middleware, { limit: 10, callback: proc do |old_env, new_env|
+puts "redirect #{new_env.url}"
+          raise RedirectAuthenticated(new_env.url) if new_env.url.scheme['weconnect']
+        end
+        }
         connection.use WeConnectMiddleware
         connection.use :cookie_jar
 
