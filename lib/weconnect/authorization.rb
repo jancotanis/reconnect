@@ -1,3 +1,4 @@
+require 'uri'
 require 'nokogiri'
 require File.expand_path('error', __dir__)
 
@@ -38,7 +39,7 @@ module WeConnect
         @car_info = car_info
       end
       def login
-        format = 'x-www-form-urlencoded'
+        @connection.format = 'x-www-form-urlencoded'
         page = login_page_step
         form = PasswordFormParser.new(page.body)
         page = email_page_step(form)
@@ -60,7 +61,7 @@ module WeConnect
   #        request.headers['user-agent'] = 'WeConnect/3 CFNetwork/1331.0.7 Darwin/21.4.0'
   #        request.headers['weconnect-trace-id'] = trace_id
         end
-
+=begin
         if r.status == 303
           @login_url = url = r['location']
           loop do
@@ -74,38 +75,41 @@ module WeConnect
         else
           raise IncompatibleAPIError.new( "redirect expected" )
         end
+=end
+        @login_url = r.env.url
         r
       end
 
       def email_page_step(form)
         fields = form.fields
-        fields['email'] = c.username
-        uri = URI.join(@login_url, form.action)
-          format = 'x-www-form-urlencoded'
-          r = @connection.post(uri.to_s,fields,true) do |request|
-                request.headers=request.headers.merge({
-                  'x-requested-with': id3.xrequest,
-                  'upgrade-insecure-requests': "1"
-                })
-          end
-          r = eat(r)
+        fields['email'] = @connection.username
+        # update to login form
+        @login_url = URI.join(@login_url, form.action)
+        r = @connection.post(@login_url.to_s,fields,true) do |request|
+              request.headers=request.headers.merge({
+                'x-requested-with': @car_info.xrequest,
+                'upgrade-insecure-requests': "1"
+              })
+        end
+        r = eat(r)
       end
       def password_page_step(idk)
         params = {
-          :email => c.username,
-          :password => c.password,
+          :email => @connection.username,
+          :password => @connection.password,
           idk.idk['csrf_parameterName'] => idk.idk['csrf_token'],
           :hmac => idk.template_model['hmac'],
           'relayState' => idk.template_model['relayState']
         }
-    puts "*** form action #{uri} action= #{idk.post_action} => #{idk.post_action_uri(uri.to_s)}"
 
-        rpw = @connection.post(idk.post_action_uri(uri.to_s),params,true) do |request|
+
+        puts "*** form action #{@login_url} action= #{idk.post_action} => #{idk.post_action_uri(@login_url)}"
+        rpw = @connection.post(idk.post_action_uri(@login_url),params,true) do |request|
 
               request.headers=request.headers.merge({
     #            "Content-Type": "application/x-www-form-urlencoded",
     #            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-                'x-requested-with': id3.xrequest,
+                'x-requested-with': @car_info.xrequest,
                 'upgrade-insecure-requests': "1"
               })
         end
