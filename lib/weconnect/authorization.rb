@@ -7,12 +7,16 @@ module WeConnect
   # Deals with authentication flow and stores it within global configuration
   module Authentication
     TOKENS = %w(state id_token access_token code)
+    TOKEN_URL = 'https://emea.bff.cariad.digital/user-login/login/v1'
     # Authorize to the WeConnect portal
     def login(options = {})
       raise ConfigurationError, "username/password not set" unless username && password
       # only bearer token needed
       car = CarConnectInfo.new
-      tokens = WebLogin.new(self,car).login
+      @tokens = WebLogin.new(self,car).login
+
+      reauth_connection(@tokens['access_token'])
+      self.access_token
     end
 #  private
     class CarConnectInfo
@@ -50,10 +54,10 @@ module WeConnect
         raise IncompatibleAPIError.new( "#{@car_info.redirect} redirect not found" )
       rescue WeconnectAuthenticated => authenticated
         # weconnect://authenticatied#... extpected
-        fragment = URI.parse(authenticated.redirect).fragment
-        tokens = query_parameters(fragment)
+
+        @tokens = query_parameters(URI.parse(authenticated.redirect).fragment)
         # fetch final tokens from login
-        tokens = fetch_tokens(tokens)
+        @tokens = fetch_tokens(@tokens)
       end
     private
       def login_page_step
@@ -77,7 +81,6 @@ module WeConnect
                 'upgrade-insecure-requests': "1"
               })
         end
-        r = eat(r)
       end
       def password_page_step(idk)
         params = {
@@ -109,7 +112,6 @@ module WeConnect
 
       def fetch_tokens(tokens)
         # check if all keys exist
-        
         if TOKENS.all? { |s| tokens.key? s }
           params = {
             'state': tokens['state'],
@@ -119,51 +121,47 @@ module WeConnect
             'access_token': tokens['access_token'],
             'authorizationCode': tokens['code'],
           }
-          id_token = tokens['id_token']
-          # headers['Authorization'] = 'Bearer #{id_token}'
+
           @connection.format = :json
-          @connection.access_token = id_token
-          token_response = @connection.post('https://emea.bff.cariad.digital/user-login/login/v1', params) do |request|
-          end
+          @connection.reauth_connection(tokens['id_token'])
+          # complete set tokens
+          token_response = @connection.post(TOKEN_URL, params)
           # translate token names to _token suffix
           token_response = translate_tokens(token_response.body, %w(accessToken idToken refreshToken))
-          token_response['expires_at'] = Time.new() + token_response['expires_in'] if token_response['expires_in']
+puts "\n\n translated tokens"
+puts token_response.to_json
+          token_response = parse_token_response(token_response)
+puts "\n\n parse response tokens"
+puts token_response.to_json
           token_response
         else
           raise IncompatibleAPIError.new( 'Expected tokens: #{TOKENS}, but found: #{tokens}' )
         end
       end
 
-      def translate_tokens(token, tokens)
-        tokens.each do |name|
-          if token[name]
-            token[name.gsub('Token', '_token')] = token.delete(name) 
+      def translate_tokens(tokens, keys)
+        keys.each do |name|
+          if tokens[name]
+            tokens[name.gsub('Token', '_token')] = tokens.delete(name)
           end
         end
-        token
+        tokens
       end
+      # oauthlib/oauth2/rfc6749/parameters.py
+      def parse_token_response(tokens)
+        tokens['expires_at'] = Time.new() + tokens['expires_in'] if tokens['expires_in']
+        # validate
+        raise AuthenticationError.new(tokens['error']) if tokens['error']
+        #raise AuthenticationError.new('Missing access token error') if tokens['access_token']
+
+        tokens
+      end
+
       def query_parameters(query_fragment)
         parameters = query_fragment.split('&').inject({}) do |result,param|
-          k,v = param.split('='); 
+          k,v = param.split('=');
           result.merge({k => v })
         end
-      end
-      def eat(response)
-=begin
-        while response.status >=300 && response.status < 400 do
-          url = response['location']
-          # add host if not present
-          unless url['https:']
-            break if url[@car_info.redirect]
-            originates = response.env.url
-            url = originates.scheme + "://" + originates.host + url
-          end
-          response = @connection.get(url, nil, true) do |request|
-            request.headers['x-requested-with'] = @car_info.xrequest
-          end
-        end
-=end
-        response
       end
 
       def nonce
@@ -214,7 +212,6 @@ module WeConnect
         @post_action = @template_model['postAction']
         @identifier = @template_model['identifierUrl']
         @error = @template_model['error']
-puts "**** ERROR: #{@error}"
       end
 
       def post_action_uri(base_uri)

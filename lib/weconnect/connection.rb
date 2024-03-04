@@ -16,7 +16,6 @@ module WeConnect
   # - Headers setup for client-id and client-secret when client_id and client_secret are not nil @setup_headers
   # @private
   module Connection
-    private
     class WeConnectMiddleware < Faraday::Middleware
       def call(env)
         response = @app.call(env)
@@ -26,6 +25,11 @@ module WeConnect
         response
       end
     end
+    def reauth_connection(token)
+      access_token = token
+      setup_authorization(@connection)
+    end
+    private
     def connection
       raise ConfigurationError, "Option for endpoint is not defined" unless endpoint
 
