@@ -6,10 +6,7 @@ module WeConnect
   extend WrAPI::Configuration
   extend WrAPI::RespondTo
 
-  #DEFAULT_UA = "Ruby WeConnect API client #{WeConnect::VERSION}".freeze
-  DEFAULT_UA = 'WeConnect/3 CFNetwork/1331.0.7 Darwin/21.4.0'
-
-  CARIAD_URL = 'https://emea.bff.cariad.digital'
+  DEFAULT_UA = "WeConnect/3 CFNetwork/1331.0.7 Darwin/21.4.0 Ruby WeConnect Client #{WeConnect::VERSION}".freeze
   DEFAULT_ENDPOINT = 'https://emea.bff.cariad.digital/login/v1/idk/openid-configuration'.freeze
   #
   # @return [WeConnect::Client]

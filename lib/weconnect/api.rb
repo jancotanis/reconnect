@@ -27,7 +27,7 @@ module WeConnect
     end
 
     include WrAPI::Connection
-    include WeConnect::Connection
+    include Connection
     include WrAPI::Request
     include WrAPI::Authentication
     include Authentication

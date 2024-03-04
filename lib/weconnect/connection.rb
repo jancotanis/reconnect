@@ -4,7 +4,7 @@ require 'faraday-cookie_jar'
 require File.expand_path('error', __dir__)
 
 module WeConnect
-  class RedirectAuthenticated < WeConnectError
+  class WeconnectAuthenticated < WeConnectError
     attr_reader :redirect
     def initialize(location)
       @redirect = location
@@ -21,7 +21,7 @@ module WeConnect
       def call(env)
         response = @app.call(env)
         if location = response['location']
-          raise RedirectAuthenticated.new(location) if location['weconnect:']
+          raise WeconnectAuthenticated.new(location) if location['weconnect:']
         end
         response
       end
@@ -31,9 +31,8 @@ module WeConnect
 
       options = setup_options
       @connection ||= Faraday::Connection.new(options) do |connection|
-        connection.use Faraday::FollowRedirects::Middleware, { limit: 10, callback: proc do |old_env, new_env|
-        end
-        }
+        connection.use Faraday::FollowRedirects::Middleware, limit: 10
+
         connection.use WeConnectMiddleware
         connection.use :cookie_jar
 
