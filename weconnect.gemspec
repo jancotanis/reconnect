@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = 'A Ruby wrapper for the weconnect (readonly)'
   s.homepage    = 'https://rubygems.org/gems/weconnect'
 
-  s.required_ruby_version = Gem::Requirement.new('>= 2.4.0')
+  s.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
 
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = 'https://github.com/jancotanis/weconnect'
@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'faraday-follow_redirects'
   s.add_runtime_dependency 'faraday-cookie_jar'
   s.add_runtime_dependency 'nokogiri'
-  s.add_runtime_dependency 'wrapi', ">= 0.3.0"
+  s.add_runtime_dependency 'wrapi', ">= 0.4.2"
 #  s.add_runtime_dependency 'jwt'
 #  s.add_runtime_dependency 'oauth2'
   s.add_development_dependency 'dotenv'
