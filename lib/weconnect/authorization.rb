@@ -1,21 +1,22 @@
 require 'uri'
-require 'cgi'
+require 'yaml'
 require 'nokogiri'
 require File.expand_path('error', __dir__)
 
 module WeConnect
   # Deals with authentication flow and stores it within global configuration
   module Authentication
-
+    TOKENS = %w(state id_token access_token code)
     # Authorize to the WeConnect portal
     def login(options = {})
       raise ConfigurationError, "username/password not set" unless username && password
       # only bearer token needed
-      WebLogin.new(self,CarConnectInfo.new).login
+      car = CarConnectInfo.new
+      tokens = WebLogin.new(self,car).login
     end
 #  private
     class CarConnectInfo
-    attr_reader :type, :country, :xrequest, :xclient_id, :client_id, :scope, :response_type, :redirect, :xappversion, :xappname
+    attr_reader :type, :country, :xrequest, :xclient_id, :client_id, :scope, :response_type, :redirect, :refresh_url
     	def initialize
     		@type = "Id";
     		@country = "DE";
@@ -47,9 +48,12 @@ module WeConnect
         page = password_page_step(idk)
 
         raise IncompatibleAPIError.new( "#{@car_info.redirect} redirect not found" )
-      rescue RedirectAuthenticated => authenticated
+      rescue WeconnectAuthenticated => authenticated
         # weconnect://authenticatied#... extpected
-        tokens = CGI.parse(URI.parse(authenticated.redirect).fragment)
+        fragment = URI.parse(authenticated.redirect).fragment
+        tokens = query_parameters(fragment)
+        # fetch final tokens from login
+        tokens = fetch_tokens(tokens)
       end
     private
       def login_page_step
@@ -84,20 +88,68 @@ module WeConnect
           'relayState' => idk.template_model['relayState']
         }
 
-
-        puts "*** form action #{@login_url} action= #{idk.post_action} => #{idk.post_action_uri(@login_url)}"
         rpw = @connection.post(idk.post_action_uri(@login_url),params,true) do |request|
-
               request.headers=request.headers.merge({
-    #            "Content-Type": "application/x-www-form-urlencoded",
-    #            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
                 'x-requested-with': @car_info.xrequest,
                 'upgrade-insecure-requests': "1"
               })
         end
-        rpw = eat(rpw)
+        # should not come here, exception raised by auth redirect
+        if rpw.env.url.query['login.error']
+          params  = query_parameters(rpw.env.url.query)
+          description = {
+            'login.errors.password_invalid': 'Password is invalid',
+            'login.error.throttled': 'Login throttled, probably too many wrong logins. You have to wait some minutes until a new login attempt is possible'
+          }
+          error = params['error']
+          error = description[error] if description[error]
+          raise AuthenticationError.new( "Login error #{error}" )
+        end
+      end
+
+      def fetch_tokens(tokens)
+        # check if all keys exist
+        
+        if TOKENS.all? { |s| tokens.key? s }
+          params = {
+            'state': tokens['state'],
+            'id_token': tokens['id_token'],
+            'redirect_uri': @car_info.redirect,
+            'region': 'emea',
+            'access_token': tokens['access_token'],
+            'authorizationCode': tokens['code'],
+          }
+          id_token = tokens['id_token']
+          # headers['Authorization'] = 'Bearer #{id_token}'
+          @connection.format = :json
+          @connection.access_token = id_token
+          token_response = @connection.post('https://emea.bff.cariad.digital/user-login/login/v1', params) do |request|
+          end
+          # translate token names to _token suffix
+          token_response = translate_tokens(token_response.body, %w(accessToken idToken refreshToken))
+          token_response['expires_at'] = Time.new() + token_response['expires_in'] if token_response['expires_in']
+          token_response
+        else
+          raise IncompatibleAPIError.new( 'Expected tokens: #{TOKENS}, but found: #{tokens}' )
+        end
+      end
+
+      def translate_tokens(token, tokens)
+        tokens.each do |name|
+          if token[name]
+            token[name.gsub('Token', '_token')] = token.delete(name) 
+          end
+        end
+        token
+      end
+      def query_parameters(query_fragment)
+        parameters = query_fragment.split('&').inject({}) do |result,param|
+          k,v = param.split('='); 
+          result.merge({k => v })
+        end
       end
       def eat(response)
+=begin
         while response.status >=300 && response.status < 400 do
           url = response['location']
           # add host if not present
@@ -106,11 +158,11 @@ module WeConnect
             originates = response.env.url
             url = originates.scheme + "://" + originates.host + url
           end
-puts "* eat: "+url
           response = @connection.get(url, nil, true) do |request|
             request.headers['x-requested-with'] = @car_info.xrequest
           end
         end
+=end
         response
       end
 
@@ -161,7 +213,8 @@ puts "* eat: "+url
         @template_model = @idk['templateModel']
         @post_action = @template_model['postAction']
         @identifier = @template_model['identifierUrl']
-        @error =   @template_model['error']
+        @error = @template_model['error']
+puts "**** ERROR: #{@error}"
       end
 
       def post_action_uri(base_uri)
