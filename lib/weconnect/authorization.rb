@@ -7,17 +7,34 @@ module WeConnect
   # Deals with authentication flow and stores it within global configuration
   module Authentication
     TOKENS = %w(state id_token access_token code)
-    TOKEN_URL = 'https://emea.bff.cariad.digital/user-login/login/v1'
+    TOKEN_URL   = 'https://emea.bff.cariad.digital/user-login/login/v1'.freeze
+    REFRESH_URL = 'https://emea.bff.cariad.digital/user-login/refresh/v1'.freeze
+
     # Authorize to the WeConnect portal
     def login(options = {})
       raise ConfigurationError, "username/password not set" unless username && password
       # only bearer token needed
       car = CarConnectInfo.new
-      @tokens = WebLogin.new(self,car).login
 
-      reauth_connection(@tokens['access_token'])
+      @tokens = WebLogin.new(self,car).login
+      api_process_token(@tokens)
+      reauth_connection(self.access_token)
       self.access_token
     end
+    def auth_tokens
+      @tokens
+    end
+    def api_process_token(tokens)
+      self.access_token  = tokens['access_token']
+      self.token_type    = tokens['token_type']
+      self.refresh_token = tokens['refresh_token']
+      self.token_expires = tokens['expires_at']
+    end
+    
+    def refresh_token
+      raise Error.new 'not implemented'
+    end
+
 #  private
     class CarConnectInfo
     attr_reader :type, :country, :xrequest, :xclient_id, :client_id, :scope, :response_type, :redirect, :refresh_url
@@ -31,11 +48,7 @@ module WeConnect
     		@scope = "openid profile badge cars dealers vin";
     		@response_type = "code id_token token";
         @redirect = "weconnect://authenticated";
-        @refresh_url='https://identity.vwgroup.io/oidc/v1/token',
-
-    		@xappversion = "";
-    		@xappname = "";
-
+        @refresh_url='https://identity.vwgroup.io/oidc/v1/token'
     	end
     end
     class WebLogin
@@ -128,11 +141,7 @@ module WeConnect
           token_response = @connection.post(TOKEN_URL, params)
           # translate token names to _token suffix
           token_response = translate_tokens(token_response.body, %w(accessToken idToken refreshToken))
-puts "\n\n translated tokens"
-puts token_response.to_json
           token_response = parse_token_response(token_response)
-puts "\n\n parse response tokens"
-puts token_response.to_json
           token_response
         else
           raise IncompatibleAPIError.new( 'Expected tokens: #{TOKENS}, but found: #{tokens}' )

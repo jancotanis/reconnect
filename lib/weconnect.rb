@@ -1,5 +1,6 @@
 require "wrapi"
 require File.expand_path('weconnect/client', __dir__)
+require File.expand_path('weconnect/pagination', __dir__)
 require File.expand_path('weconnect/version', __dir__)
 
 module WeConnect
@@ -11,13 +12,13 @@ module WeConnect
   #
   # @return [WeConnect::Client]
   def self.client(options = {})
-    WeConnect::Client.new({ user_agent: DEFAULT_UA, endpoint: DEFAULT_ENDPOINT }.merge(options))
+    WeConnect::Client.new({ user_agent: DEFAULT_UA, endpoint: DEFAULT_ENDPOINT, pagination_class: RequestPagination::DefaultPager }.merge(options))
   end
 
   def self.reset
     super
-    self.endpoint   = nil
     self.user_agent = DEFAULT_UA
     self.endpoint   = DEFAULT_ENDPOINT
+    self.pagination_class = RequestPagination::DefaultPager
   end
 end

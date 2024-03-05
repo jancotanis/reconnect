@@ -26,7 +26,7 @@ module WeConnect
       end
     end
     def reauth_connection(token)
-      access_token = token
+      self.access_token = token
       setup_authorization(@connection)
     end
     private
