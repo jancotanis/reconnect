@@ -111,7 +111,7 @@ logger=Logger.new('snippets1.log')
 id3 = CarConnectInfo.new
 c = WeConnect.client({ logger: logger, username: ENV['WECONNECT_USERNAME'], password: ENV['WECONNECT_PASSWORD']})
 
-params = {
+_params = {
     client_id: id3.client_id,
     redirect_uri: id3.redirect,
     response_type: id3.response_type,

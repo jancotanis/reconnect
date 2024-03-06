@@ -9,8 +9,12 @@ module WeConnect
     # Defaut pages assumes all data retrieved in a single go.
     class DefaultPager < WrAPI::RequestPagination::DefaultPager
 
-      def self.data(body) 
-        body['data']
+      def self.data(body)
+        if body['data']
+          body['data']
+        else
+          body
+        end
       end
     end
 
