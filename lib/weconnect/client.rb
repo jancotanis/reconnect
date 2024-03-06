@@ -16,22 +16,17 @@ module WeConnect
     end
 
     def vehicles(params={})
-      self.get('/vehicle/v1/vehicles',params)
-    end
-    def vehicle_capability(vin,capability,param={})
-      self.get("/vehicle/v1/vehicles/#{vin}/#{capability}")
+      self.get(vehicle_api,params)
     end
     def vehicle_status(vin, jobs='all')
-      self.get("/vehicle/v1/vehicles/#{vin}/selectivestatus?jobs=#{jobs}")
+      self.get(vehicle_api(vin),"/selectivestatus?jobs=#{jobs}"})
     end
 
     def parking(vin)
-      self.get("https://emea.bff.cariad.digital/vehicle/v1/vehicles/#{vin}/parkingposition")
+      self.get(vehicle_api(vin,'/parkingposition'))
     end
 
     def trips(vin,trip_type=TripType::SHORT_TERM,period)
-      #/shortterm/last
-      #/longterm/last
       sef.get('/vehicle/v1/trips/#{vin}/#{trip_type.downcase}/last',params)
     end
 
@@ -39,11 +34,21 @@ module WeConnect
       self.get("/media/v2/vehicle-images/{self.vin.value}?resolution=2x")
     end
 
-
-
+    def control(vin, operation, value)
+      self.post(vehicle_api(vin,"/#{operation}/#{value}"))
+    end
+    def control_charging(vin, value)
+      if ControlOperation.allowed_values.includes? value
+        control(vin,'charging',value)
+      end
+    end    
   private
     def openid_configuration
       get(self.endpoint)
+    end
+    
+    def vehicle_api(vin=nil,path=nil)
+      "/vehicle/v1/vehicles/#{vin}#{path}"
     end
   end
 end
