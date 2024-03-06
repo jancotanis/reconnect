@@ -72,15 +72,40 @@ module WeConnect
     V = 'V'
     UNKNOWN = 'unknown brand code'
   end
-  
+
   class Domain < Enum
     enum %w[
-      all allCapable access activeventilation automation auxiliaryheating 
-      userCapabilities charging chargingProfiles batteryChargingCare 
+      all allCapable access activeventilation automation auxiliaryheating
+      userCapabilities charging chargingProfiles batteryChargingCare
       climatisation climatisationTimers departureTimers
       fuelStatus vehicleLights lvBattery readiness
       vehicleHealthInspection vehicleHealthWarnings oilLevel
       measurements batterySupport parking trips
     ], :underscore
+  end
+
+  class TripType < Enum
+    enum %w[shortTerm longTerm cyclic]
+    UNKNOWN = 'unkown trip type'
+  end
+
+  class PlugConnectionState < Enum
+    enum %w[connected disconnected invalid unsupported]
+    UNKNOWN = 'unknown unlock plug state'
+  end
+     
+  class PlugLockState < Enum
+    enum %w[locked unlocked invalid unsupported]
+    UNKNOWN = 'unknown unlock plug state'
+  end
+
+  class ExternalPower < Enum
+    enum %w[ready active unavailable invalid unsupported]
+    UNKNOWN = 'unknown external power'
+  end
+
+  class LedColor < Enum
+    enum %w[nune green red]
+    UNKNOWN = 'unknown plug led color'
   end
 end
