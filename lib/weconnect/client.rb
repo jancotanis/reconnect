@@ -14,20 +14,32 @@ module WeConnect
 
       @openid_config = openid_configuration
     end
-    
+
     def vehicles(params={})
       self.get('/vehicle/v1/vehicles',params)
     end
+    def vehicle_capability(vin,capability,param={})
+      self.get("/vehicle/v1/vehicles/#{vin}/#{capability}")
+    end
+    def vehicle_status(vin, jobs='all')
+      self.get("/vehicle/v1/vehicles/#{vin}/selectivestatus?jobs=#{jobs}")
+    end
 
-    def trips
+    def parking(vin)
+      self.get("https://emea.bff.cariad.digital/vehicle/v1/vehicles/#{vin}/parkingposition")
+    end
+
+    def trips(vin,trip_type=TripType::SHORT_TERM,period)
       #/shortterm/last
       #/longterm/last
-      sef.get('/vehicle/v1/trips/#{vin}/shortterm/last',params)
+      sef.get('/vehicle/v1/trips/#{vin}/#{trip_type.downcase}/last',params)
     end
 
-    def vehicle_capability(vin,capability,param={})
-      self.get('/vehicle/v1/vehicles/#{vin}/#{capability}')
+    def images(vin)
+      self.get("/media/v2/vehicle-images/{self.vin.value}?resolution=2x")
     end
+
+
 
   private
     def openid_configuration
