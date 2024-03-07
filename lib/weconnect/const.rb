@@ -72,15 +72,20 @@ module WeConnect
     V = 'V'
     UNKNOWN = 'unknown brand code'
   end
-
-  class Domain < Enum
+  class JobDomain < Enum
     enum %w[
-      all allCapable access activeventilation automation auxiliaryheating
+      access activeventilation automation auxiliaryheating
       userCapabilities charging chargingProfiles batteryChargingCare
       climatisation climatisationTimers departureTimers
       fuelStatus vehicleLights lvBattery readiness
       vehicleHealthInspection vehicleHealthWarnings oilLevel
-      measurements batterySupport parking trips
+      measurements batterySupport
+    ], :underscore
+    JOB_DOMAINS = self.constants.inject([]){|result,const| result << self.const_get(const)}
+  end
+  class AllDomains < JobDomain
+    enum %w[
+      all allCapable parking trips
     ], :underscore
   end
 

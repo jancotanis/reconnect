@@ -1,0 +1,1001 @@
+#  print results
+VIN:               WVW
+Model:             ID.3
+Device Platform:   WCAR
+Nickname:          ID.3 Pro Performance
+Brand Code:        V
+Role:              PRIMARY_USER
+Enrollment Status: COMPLETED
+User Role Status:  ENABLED
+Capabilities: 34 items
+	[webApp] Status: MISSING_LICENSE disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[automation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[batteryChargingCare] Status: DISABLED_BY_USER, UNKNOWN disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[batteryColdWarning] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[batterySupport] disabling: False
+	[charging] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[chargingProfiles] disabling: False (expires 2026-07-01T23:59:59+00:00)
+	[chargingStations] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[climatisation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[climatisationTimers] disabling: False (expires 2026-07-01T23:59:59+00:00)
+	[cubicNetwork] disabling: False
+	[dealerAppointment] Status: DISABLED_BY_USER, UNKNOWN disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[destinations] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[fuelStatus] disabling: False (expires 2026-07-01T23:59:59+00:00)
+	[ignition] disabling: False (expires 2026-07-01T23:59:59+00:00)
+	[mapUpdate] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[measurements] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[onlineSpeech] Status: CONSENT_MISSING disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[parkingBrake] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[parkingInformation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[parkingPosition] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[personalizationOnline] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[plugAndCharge] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[poiSearch] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[readiness] disabling: False
+	[routing] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[state] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[trafficInformation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+	[vehicleHealth] disabling: True (expires 2053-07-01T23:59:59+00:00)
+	[vehicleHealthInspection] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[vehicleHealthWarnings] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[vehicleLights] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[vehicleWakeUpTrigger] disabling: False (expires 2053-07-01T23:59:59+00:00)
+	[webRadio] disabling: True (expires 2026-07-01T23:59:59+00:00)
+Domains: 15 items
+[access] Elements: 1 items
+	[accessStatus] (last captured 2024-03-07T13:11:13+00:00)
+		Overall Status: safe
+		Door Lock Status: locked
+		Doors: 6 items
+			bonnet: closed, unknown lock state
+			trunk: closed, locked
+			rearRight: closed, locked
+			rearLeft: closed, locked
+			frontRight: closed, locked
+			frontLeft: closed, locked
+		Windows: 7 items
+			sunRoof: unsupported
+			roofCover: unsupported
+			sunRoofRear: unsupported
+			frontLeft: closed
+			frontRight: closed
+			rearLeft: closed
+			rearRight: closed
+[automation] Elements: 2 items
+	[climatisationTimer] (last captured 2024-03-07T13:11:14+00:00)
+		Time in Car: 2024-03-07T14:11:14+01:00 (captured at 2024-03-07T13:11:14+00:00)
+		Timers: 2 items
+			1: Enabled: True at 05:15 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+			2: Enabled: True at 06:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+	[chargingProfiles] (last captured 2024-03-07T13:11:15+00:00)
+		Time in Car: 2024-03-07T14:11:16+01:00 (captured at 2024-03-07T13:11:15+00:00)
+		Profiles: 1 items
+				Profile: 1 - Thuis
+				Options: 
+					Auto Unlock When Charged: permanent
+				Timers: 3 items
+					1: Enabled: False (Climatisation: False) at 05:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+					2: Enabled: False (Climatisation: False) at 07:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+					3: Enabled: False (Climatisation: False) at 05:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+				Preferred Times: 3 items
+					1: Enabled: False Start: 20:00:00 End: 04:00:00
+					2: Enabled: False Start: 20:00:00 End: 04:00:00
+					3: Enabled: False Start: 20:00:00 End: 04:00:00
+		Next Charging Timer: none
+		Target SOC reachable: invalid
+[userCapabilities] Elements: 1 items
+	[capabilitiesStatus]
+		Capabilities: 34 items
+			[webApp] Status: MISSING_LICENSE disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[automation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[batteryChargingCare] Status: DISABLED_BY_USER, UNKNOWN disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[batteryColdWarning] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[batterySupport] disabling: False
+			[charging] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[chargingProfiles] disabling: False (expires 2026-07-01T23:59:59+00:00)
+			[chargingStations] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[climatisation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[climatisationTimers] disabling: False (expires 2026-07-01T23:59:59+00:00)
+			[cubicNetwork] disabling: False
+			[dealerAppointment] Status: DISABLED_BY_USER, UNKNOWN disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[destinations] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[fuelStatus] disabling: False (expires 2026-07-01T23:59:59+00:00)
+			[ignition] disabling: False (expires 2026-07-01T23:59:59+00:00)
+			[mapUpdate] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[measurements] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[onlineSpeech] Status: CONSENT_MISSING disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[parkingBrake] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[parkingInformation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[parkingPosition] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[personalizationOnline] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[plugAndCharge] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[poiSearch] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[readiness] disabling: False
+			[routing] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[state] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[trafficInformation] disabling: True (expires 2026-07-01T23:59:59+00:00)
+			[vehicleHealth] disabling: True (expires 2053-07-01T23:59:59+00:00)
+			[vehicleHealthInspection] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[vehicleHealthWarnings] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[vehicleLights] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[vehicleWakeUpTrigger] disabling: False (expires 2053-07-01T23:59:59+00:00)
+			[webRadio] disabling: True (expires 2026-07-01T23:59:59+00:00)
+[charging] Elements: 5 items
+	[batteryStatus] (last captured 2024-03-07T15:23:15+00:00)
+		Current SoC: 86%
+		Range: 295km
+	[chargingStatus] (last captured 2024-03-07T15:23:15+00:00)
+		State: charging
+		Mode: manual
+		Remaining Charging Time: 95 minutes
+		Charge Power: 5.5 kW
+		Charge Rate: 35.0 km/h
+		Charge Type: ac
+		Charging Settings: profile
+	[chargingSettings] (last captured 2024-03-07T15:23:21+00:00)
+		Maximum Charge Current AC: reduced
+		Auto Unlock When Charged: off
+		Auto Unlock When Charged AC: off
+		Target SoC: 80 %
+	[chargeMode]
+		Preferred charge mode: manual
+		Available charge modes: [manual]
+	[plugStatus] (last captured 2024-03-07T13:11:17+00:00)
+		Plug: connected, locked, External Power: active, Led color: green
+[chargingProfiles] Elements: 1 items
+	[chargingProfilesStatus] (last captured 2024-03-07T13:11:15+00:00)
+		Time in Car: 2024-03-07T14:11:16+01:00 (captured at 2024-03-07T13:11:15+00:00)
+		Profiles: 1 items
+				Profile: 1 - Thuis
+				Options: 
+					Auto Unlock When Charged: permanent
+				Timers: 3 items
+					1: Enabled: False (Climatisation: False) at 05:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+					2: Enabled: False (Climatisation: False) at 07:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+					3: Enabled: False (Climatisation: False) at 05:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+				Preferred Times: 3 items
+					1: Enabled: False Start: 20:00:00 End: 04:00:00
+					2: Enabled: False Start: 20:00:00 End: 04:00:00
+					3: Enabled: False Start: 20:00:00 End: 04:00:00
+		Next Charging Timer: none
+		Target SOC reachable: invalid
+[climatisation] Elements: 3 items
+	[climatisationStatus] (last captured 2024-03-07T13:11:17+00:00)
+		State: off
+		Remaining Climatization Time: 0 min
+	[climatisationSettings] (last captured 2024-03-07T13:11:17+00:00)
+		Target Temperature in °C: 18.0 °C 
+		Target Temperature in °F: 64.0 °F 
+		Temperature unit in car: celsius
+		Start climatization after unlock: False
+		Window heating: True
+		Heating Front Left Seat: False
+		Heating Front Right Seat: False
+	[windowHeatingStatus] (last captured 2024-03-07T13:11:17+00:00)
+		Windows: 2 items
+			front: off
+			rear: off
+[climatisationTimers] Elements: 1 items
+	[climatisationTimersStatus] (last captured 2024-03-07T13:11:14+00:00)
+		Time in Car: 2024-03-07T14:11:14+01:00 (captured at 2024-03-07T13:11:14+00:00)
+		Timers: 2 items
+			1: Enabled: True at 05:15 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+			2: Enabled: True at 06:00 on mondays tuesdays wednesdays thursdays fridays saturdays sundays  
+[fuelStatus] Elements: 1 items
+	[rangeStatus] (last captured 2024-03-07T15:23:15+00:00)
+		Car Type: electric
+		Total Range: 295 km
+		Primary Engine: electric  SoC: 86% (295 km)
+[vehicleLights] Elements: 1 items
+	[lightsStatus] (last captured 2024-03-07T13:11:13+00:00)
+		Lights: 2 items
+			right: off
+			left: off
+[readiness] Elements: 1 items
+	[readinessStatus]
+		Connection State: 
+			Is online: True
+			Is active: False
+			Battery power level: comfort
+			Daily Power Budget Available: True 
+		Connection Warning: 
+			Insufficient Battery Level Warning: False
+			Daily Power Budget Warning: False 
+[vehicleHealthInspection] Elements: 1 items
+	[maintenanceStatus] (last captured 2024-03-07T13:11:12+00:00)
+		Current milage: 60995 km
+		Inspection due in: 350 days
+[vehicleHealthWarnings] Elements: 1 items
+	[warningLights] (last captured 2024-03-07T10:16:54+00:00)
+		Current milage: 60995 km
+[measurements] Elements: 4 items
+	[rangeStatus] (last captured 0001-01-01T00:00:00+00:00)
+	[odometerStatus] (last captured 2024-03-07T13:11:12+00:00)
+		Odometer: 60995km
+	[temperatureBatteryStatus] (last captured 2024-03-07T13:11:13+00:00)
+		Battery temperature between 11.0 and 12.5°C
+	[fuelLevelStatus] (last captured 0001-01-01T00:00:00+00:00)
+		Car Type: electric
+		Primary Engine: electric
+[batterySupport] Elements: 1 items
+	[batterySupportStatus]
+		Battery Support: enabled
+[parking] Elements: 1 items
+	[parkingPosition] (last captured 2024-03-07T10:18:22+00:00)
+		Latitude: 51.763373
+		Longitude: 4.157948
+
+#  done
+{
+	"access": {
+		"accessStatus": {
+			"value": {
+				"overallStatus": "safe",
+				"carCapturedTimestamp": "2024-03-07T13:11:13.824Z",
+				"doors": [
+					{
+						"name": "bonnet",
+						"status": [
+							"closed"
+						]
+					},
+					{
+						"name": "trunk",
+						"status": [
+							"closed",
+							"locked"
+						]
+					},
+					{
+						"name": "rearRight",
+						"status": [
+							"closed",
+							"locked"
+						]
+					},
+					{
+						"name": "rearLeft",
+						"status": [
+							"closed",
+							"locked"
+						]
+					},
+					{
+						"name": "frontRight",
+						"status": [
+							"closed",
+							"locked"
+						]
+					},
+					{
+						"name": "frontLeft",
+						"status": [
+							"closed",
+							"locked"
+						]
+					}
+				],
+				"windows": [
+					{
+						"name": "sunRoof",
+						"status": [
+							"unsupported"
+						]
+					},
+					{
+						"name": "roofCover",
+						"status": [
+							"unsupported"
+						]
+					},
+					{
+						"name": "sunRoofRear",
+						"status": [
+							"unsupported"
+						]
+					},
+					{
+						"name": "frontLeft",
+						"status": [
+							"closed"
+						]
+					},
+					{
+						"name": "frontRight",
+						"status": [
+							"closed"
+						]
+					},
+					{
+						"name": "rearLeft",
+						"status": [
+							"closed"
+						]
+					},
+					{
+						"name": "rearRight",
+						"status": [
+							"closed"
+						]
+					}
+				],
+				"doorLockStatus": "locked"
+			}
+		}
+	},
+	"automation": {
+		"climatisationTimer": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:14Z",
+				"timeInCar": "2024-03-07T14:11:14+01:00",
+				"timers": [
+					{
+						"id": 1,
+						"enabled": true,
+						"recurringTimer": {
+							"startTime": "05:15",
+							"recurringOn": {
+								"mondays": false,
+								"tuesdays": true,
+								"wednesdays": false,
+								"thursdays": false,
+								"fridays": false,
+								"saturdays": false,
+								"sundays": false
+							},
+							"targetTime": "05:15",
+							"repetitionDays": [
+								"tuesday"
+							]
+						}
+					},
+					{
+						"id": 2,
+						"enabled": true,
+						"recurringTimer": {
+							"startTime": "06:00",
+							"recurringOn": {
+								"mondays": false,
+								"tuesdays": false,
+								"wednesdays": true,
+								"thursdays": true,
+								"fridays": false,
+								"saturdays": false,
+								"sundays": false
+							},
+							"targetTime": "06:00",
+							"repetitionDays": [
+								"wednesday",
+								"thursday"
+							]
+						}
+					}
+				]
+			}
+		},
+		"chargingProfiles": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:15.578Z",
+				"timeInCar": "2024-03-07T14:11:16+01:00",
+				"nextChargingTimer": {
+					"id": 0,
+					"targetSOCreachable": "invalid"
+				},
+				"profiles": [
+					{
+						"id": 1,
+						"name": "Thuis",
+						"maxChargingCurrent": "reduced",
+						"minSOC_pct": 0,
+						"targetSOC_pct": 100,
+						"options": {
+							"autoUnlockPlugWhenCharged": "permanent"
+						},
+						"preferredChargingTimes": [
+							{
+								"id": 1,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 2,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 3,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 4,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							}
+						],
+						"timers": [
+							{
+								"id": 1,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "05:00",
+									"recurringOn": {
+										"mondays": true,
+										"tuesdays": true,
+										"wednesdays": true,
+										"thursdays": true,
+										"fridays": true,
+										"saturdays": false,
+										"sundays": false
+									}
+								}
+							},
+							{
+								"id": 2,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "07:00",
+									"recurringOn": {
+										"mondays": false,
+										"tuesdays": false,
+										"wednesdays": false,
+										"thursdays": false,
+										"fridays": false,
+										"saturdays": true,
+										"sundays": true
+									}
+								}
+							},
+							{
+								"id": 3,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "05:00",
+									"recurringOn": {
+										"mondays": true,
+										"tuesdays": true,
+										"wednesdays": true,
+										"thursdays": true,
+										"fridays": true,
+										"saturdays": true,
+										"sundays": true
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	},
+	"batterySupport": {
+		"batterySupportStatus": {
+			"value": {
+				"batterySupport": "enabled"
+			}
+		}
+	},
+	"userCapabilities": {
+		"capabilitiesStatus": {
+			"value": [
+				{
+					"id": "webApp",
+					"status": [
+						2003
+					],
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "automation",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "batteryChargingCare",
+					"status": [
+						1004,
+						1018
+					],
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "batteryColdWarning",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "batterySupport",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "charging",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "chargingProfiles",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "chargingStations",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "climatisation",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "climatisationTimers",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "cubicNetwork",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "dealerAppointment",
+					"status": [
+						1004,
+						1018
+					],
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "destinations",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "fuelStatus",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "ignition",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "mapUpdate",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "measurements",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "onlineSpeech",
+					"status": [
+						3004
+					],
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "parkingBrake",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "parkingInformation",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "parkingPosition",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "personalizationOnline",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "plugAndCharge",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "poiSearch",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "readiness",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "routing",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "state",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "trafficInformation",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "vehicleHealth",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				},
+				{
+					"id": "vehicleHealthInspection",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "vehicleHealthWarnings",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "vehicleLights",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "vehicleWakeUpTrigger",
+					"expirationDate": "2053-07-01T23:59:59Z",
+					"userDisablingAllowed": false
+				},
+				{
+					"id": "webRadio",
+					"expirationDate": "2026-07-01T23:59:59Z",
+					"userDisablingAllowed": true
+				}
+			]
+		}
+	},
+	"charging": {
+		"batteryStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T15:51:07Z",
+				"currentSOC_pct": 90,
+				"cruisingRangeElectric_km": 309
+			}
+		},
+		"chargingStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T15:51:07Z",
+				"remainingChargingTimeToComplete_min": 65,
+				"chargingState": "charging",
+				"chargeMode": "manual",
+				"chargePower_kW": 5,
+				"chargeRate_kmph": 34,
+				"chargeType": "ac",
+				"chargingSettings": "profile"
+			}
+		},
+		"chargingSettings": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T15:53:22Z",
+				"maxChargeCurrentAC": "reduced",
+				"autoUnlockPlugWhenCharged": "off",
+				"autoUnlockPlugWhenChargedAC": "off",
+				"targetSOC_pct": 80
+			}
+		},
+		"plugStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:17Z",
+				"plugConnectionState": "connected",
+				"plugLockState": "locked",
+				"externalPower": "active",
+				"ledColor": "green"
+			}
+		},
+		"chargeMode": {
+			"value": {
+				"preferredChargeMode": "manual",
+				"availableChargeModes": [
+					"manual"
+				]
+			}
+		}
+	},
+	"chargingProfiles": {
+		"chargingProfilesStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:15.578Z",
+				"timeInCar": "2024-03-07T14:11:16+01:00",
+				"nextChargingTimer": {
+					"id": 0,
+					"targetSOCreachable": "invalid"
+				},
+				"profiles": [
+					{
+						"id": 1,
+						"name": "Thuis",
+						"maxChargingCurrent": "reduced",
+						"minSOC_pct": 0,
+						"targetSOC_pct": 100,
+						"options": {
+							"autoUnlockPlugWhenCharged": "permanent"
+						},
+						"preferredChargingTimes": [
+							{
+								"id": 1,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 2,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 3,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							},
+							{
+								"id": 4,
+								"enabled": false,
+								"startTime": "20:00",
+								"endTime": "04:00"
+							}
+						],
+						"timers": [
+							{
+								"id": 1,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "05:00",
+									"recurringOn": {
+										"mondays": true,
+										"tuesdays": true,
+										"wednesdays": true,
+										"thursdays": true,
+										"fridays": true,
+										"saturdays": false,
+										"sundays": false
+									}
+								}
+							},
+							{
+								"id": 2,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "07:00",
+									"recurringOn": {
+										"mondays": false,
+										"tuesdays": false,
+										"wednesdays": false,
+										"thursdays": false,
+										"fridays": false,
+										"saturdays": true,
+										"sundays": true
+									}
+								}
+							},
+							{
+								"id": 3,
+								"enabled": false,
+								"climatisation": false,
+								"recurringTimer": {
+									"startTime": "05:00",
+									"recurringOn": {
+										"mondays": true,
+										"tuesdays": true,
+										"wednesdays": true,
+										"thursdays": true,
+										"fridays": true,
+										"saturdays": true,
+										"sundays": true
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	},
+	"climatisation": {
+		"climatisationSettings": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:17Z",
+				"targetTemperature_C": 18,
+				"targetTemperature_F": 64,
+				"unitInCar": "celsius",
+				"climatizationAtUnlock": false,
+				"windowHeatingEnabled": true,
+				"zoneFrontLeftEnabled": false,
+				"zoneFrontRightEnabled": false
+			}
+		},
+		"climatisationStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:17Z",
+				"remainingClimatisationTime_min": 0,
+				"climatisationState": "off"
+			}
+		},
+		"windowHeatingStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:17Z",
+				"windowHeatingStatus": [
+					{
+						"windowLocation": "front",
+						"windowHeatingState": "off"
+					},
+					{
+						"windowLocation": "rear",
+						"windowHeatingState": "off"
+					}
+				]
+			}
+		}
+	},
+	"climatisationTimers": {
+		"climatisationTimersStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:14Z",
+				"timeInCar": "2024-03-07T14:11:14+01:00",
+				"timers": [
+					{
+						"id": 1,
+						"enabled": true,
+						"recurringTimer": {
+							"startTime": "05:15",
+							"recurringOn": {
+								"mondays": false,
+								"tuesdays": true,
+								"wednesdays": false,
+								"thursdays": false,
+								"fridays": false,
+								"saturdays": false,
+								"sundays": false
+							},
+							"targetTime": "05:15",
+							"repetitionDays": [
+								"tuesday"
+							]
+						}
+					},
+					{
+						"id": 2,
+						"enabled": true,
+						"recurringTimer": {
+							"startTime": "06:00",
+							"recurringOn": {
+								"mondays": false,
+								"tuesdays": false,
+								"wednesdays": true,
+								"thursdays": true,
+								"fridays": false,
+								"saturdays": false,
+								"sundays": false
+							},
+							"targetTime": "06:00",
+							"repetitionDays": [
+								"wednesday",
+								"thursday"
+							]
+						}
+					}
+				]
+			}
+		}
+	},
+	"fuelStatus": {
+		"rangeStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T15:51:07Z",
+				"carType": "electric",
+				"primaryEngine": {
+					"type": "electric",
+					"currentSOC_pct": 90,
+					"remainingRange_km": 309
+				},
+				"totalRange_km": 309
+			}
+		}
+	},
+	"measurements": {
+		"rangeStatus": {
+			"value": {
+				"carCapturedTimestamp": "0001-01-01T00:00:00Z"
+			}
+		},
+		"odometerStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:12.06Z",
+				"odometer": 60995
+			}
+		},
+		"temperatureBatteryStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:13.296Z",
+				"temperatureHvBatteryMin_K": "284.15",
+				"temperatureHvBatteryMax_K": "285.65"
+			}
+		},
+		"fuelLevelStatus": {
+			"value": {
+				"carCapturedTimestamp": "0001-01-01T00:00:00Z",
+				"primaryEngineType": "electric",
+				"carType": "electric"
+			}
+		}
+	},
+	"readiness": {
+		"readinessStatus": {
+			"value": {
+				"connectionState": {
+					"isOnline": true,
+					"isActive": false,
+					"batteryPowerLevel": "comfort",
+					"dailyPowerBudgetAvailable": true
+				},
+				"connectionWarning": {
+					"insufficientBatteryLevelWarning": false,
+					"dailyPowerBudgetWarning": false
+				}
+			}
+		}
+	},
+	"vehicleLights": {
+		"lightsStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:13.149Z",
+				"lights": [
+					{
+						"name": "right",
+						"status": "off"
+					},
+					{
+						"name": "left",
+						"status": "off"
+					}
+				]
+			}
+		}
+	},
+	"vehicleHealthInspection": {
+		"maintenanceStatus": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T13:11:12.06Z",
+				"inspectionDue_days": 350,
+				"mileage_km": 60995
+			}
+		}
+	},
+	"vehicleHealthWarnings": {
+		"warningLights": {
+			"value": {
+				"carCapturedTimestamp": "2024-03-07T10:16:54.392Z",
+				"mileage_km": 60995
+			}
+		}
+	}
+}
