@@ -28,9 +28,9 @@ module WeConnect
       self.access_token  = tokens['access_token']
       self.token_type    = tokens['token_type']
       self.refresh_token = tokens['refresh_token']
-      self.token_expires = tokens['expires_at']
+      self.token_expires = tokens['expires_at'] if tokens['expires_at']
     end
-    
+
     def refresh_token
       raise Error.new 'not implemented'
     end
@@ -158,6 +158,7 @@ module WeConnect
       end
       # oauthlib/oauth2/rfc6749/parameters.py
       def parse_token_response(tokens)
+puts "\n\nEXPIRE #{tokens['expires_in']}\n\n"
         tokens['expires_at'] = Time.new() + tokens['expires_in'] if tokens['expires_in']
         # validate
         raise AuthenticationError.new(tokens['error']) if tokens['error']
