@@ -74,19 +74,19 @@ module WeConnect
   end
   class JobDomain < Enum
     enum %w[
-      access activeventilation automation auxiliaryheating
+      access activeVentilation automation auxiliaryHeating
       userCapabilities charging chargingProfiles batteryChargingCare
       climatisation climatisationTimers departureTimers
       fuelStatus vehicleLights lvBattery readiness
       vehicleHealthInspection vehicleHealthWarnings oilLevel
       measurements batterySupport
-    ], :underscore
+    ]
     JOB_DOMAINS = self.constants.inject([]){|result,const| result << self.const_get(const)}
   end
   class AllDomains < JobDomain
     enum %w[
       all allCapable parking trips
-    ], :underscore
+    ]
   end
 
   class TripType < Enum
@@ -98,7 +98,7 @@ module WeConnect
     enum %w[connected disconnected invalid unsupported]
     UNKNOWN = 'unknown unlock plug state'
   end
-     
+
   class PlugLockState < Enum
     enum %w[locked unlocked invalid unsupported]
     UNKNOWN = 'unknown unlock plug state'

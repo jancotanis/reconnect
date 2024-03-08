@@ -18,8 +18,9 @@ module WeConnect
     def vehicles(params={})
       self.get(vehicle_api,params)
     end
-    def vehicle_status(vin, jobs='all')
-      self.get(vehicle_api(vin),"/selectivestatus?jobs=#{jobs}"})
+    def vehicle_status(vin, jobs=['all'])
+      jobs = jobs.join(',') if jobs.is_a? Array
+      self.get(vehicle_api(vin,"/selectivestatus?jobs=#{jobs}"))
     end
 
     def parking(vin)
@@ -41,12 +42,12 @@ module WeConnect
       if ControlOperation.allowed_values.includes? value
         control(vin,'charging',value)
       end
-    end    
+    end
   private
     def openid_configuration
       get(self.endpoint)
     end
-    
+
     def vehicle_api(vin=nil,path=nil)
       "/vehicle/v1/vehicles/#{vin}#{path}"
     end
