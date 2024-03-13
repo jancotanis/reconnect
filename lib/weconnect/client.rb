@@ -48,8 +48,13 @@ module WeConnect
       get(self.endpoint)
     end
 
+    PATH = "/vehicle/v1/vehicles".freeze
     def vehicle_api(vin=nil,path=nil)
-      "/vehicle/v1/vehicles/#{vin}#{path}"
+      if vin
+        File.join PATH, vin, path
+       else
+        PATH
+       end
     end
   end
 end
